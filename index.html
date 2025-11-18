@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>sergeibogdanov</title>
+
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml;utf8,
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+      <rect width='100' height='100' rx='20' fill='black'/>
+      <text x='50%' y='58%' font-size='50' font-family='Arial' fill='white' text-anchor='middle'>SB</text>
+    </svg>"
+  />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #0f0f0f;
+      color: #f5f5f5;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 1.4s ease forwards;
+      overflow: hidden;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #ffffff;
+      margin-bottom: 25px;
+      text-shadow: 0 0 12px rgba(255,255,255,0.2);
+    }
+
+    .contact-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 18px 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+      transition: 0.3s;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+
+    .contact-box:hover {
+      background: rgba(255, 255, 255, 0.14);
+      box-shadow: 0 10px 32px rgba(255,255,255,0.12);
+      transform: translateY(-3px);
+    }
+
+    .contact-box span {
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .copied {
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.15);
+      padding: 6px 14px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      font-size: 0.85em;
+      opacity: 0;
+      animation: popFade 1.2s ease forwards;
+      color: #ffffff;
+    }
+
+    @keyframes popFade {
+      0% { opacity: 0; transform: translate(-50%, 8px) scale(0.9); }
+      30% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      90% { opacity: 1; }
+      100% { opacity: 0; transform: translate(-50%, -8px) scale(0.95); }
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      color: #777;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sergei Bogdanov</h1>
+
+  <div class="contact-box" id="copyEmail">
+    📧 <span>sergei.bogdanov@sedu.fi</span>
+  </div>
+
+  <footer>Copyright © 2025</footer>
+
+  <script>
+    const box = document.getElementById("copyEmail");
+    const email = "sergei.bogdanov@sedu.fi";
+
+    box.addEventListener("click", () => {
+      navigator.clipboard.writeText(email);
+
+      const pop = document.createElement("div");
+      pop.className = "copied";
+      pop.innerText = "Copied!";
+      box.appendChild(pop);
+
+      setTimeout(() => {
+        pop.remove();
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
