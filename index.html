@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>sergeibogdanov</title>
+
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml;utf8,
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+      <rect width='100' height='100' rx='20' fill='black'/>
+      <text x='50%' y='58%' font-size='50' font-family='Arial' fill='white' text-anchor='middle'>SB</text>
+    </svg>"
+  />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #0f0f0f;
+      color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 1.4s ease forwards;
+      overflow-x: hidden;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: 700;
+      margin: 60px 0 30px;
+      text-shadow: 0 0 12px rgba(255,255,255,0.2);
+    }
+
+    /* SERVICES */
+    .services {
+      max-width: 1000px;
+      padding: 0 20px;
+      margin-bottom: 60px;
+    }
+
+    .services h2 {
+      font-size: 2em;
+      margin-bottom: 25px;
+      text-shadow: 0 0 10px rgba(255,255,255,0.2);
+    }
+
+   .packages {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.package {
+  flex: 1;
+  min-width: 220px;
+  max-width: 240px;
+}
+
+    .package {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      transition: 0.3s;
+    }
+
+    .package:hover {
+      transform: translateY(-6px);
+      background: rgba(255,255,255,0.14);
+    }
+
+    .price {
+      font-size: 1.4em;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .package ul {
+      text-align: left;
+      padding-left: 18px;
+      font-size: 0.95em;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      background: rgba(255,255,255,0.25);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: rgba(255,255,255,0.35);
+    }
+
+    /* CONTACT */
+    .contact-box {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 18px 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+      transition: 0.3s;
+      cursor: pointer;
+      user-select: none;
+      margin-bottom: 80px;
+    }
+
+    .contact-box:hover {
+      background: rgba(255,255,255,0.14);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      position: fixed;
+      bottom: 20px;
+      color: #777;
+      font-size: 0.9em;
+    }
+    /* SUPPORT BUTTON */
+    #supportBtn {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(12px);
+      padding: 14px 18px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 50;
+    }
+
+    #supportBtn:hover {
+      background: rgba(255,255,255,0.18);
+      transform: translateY(-3px);
+    }
+
+    /* MODAL */
+    #modalBg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    #modal {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 25px;
+      border-radius: 20px;
+      width: 320px;
+    }
+
+    input, textarea {
+      width: 90%;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 14px 22px;
+      border-radius: 14px;
+      opacity: 0;
+      animation: toastShow 0.5s forwards, toastHide 0.5s 2.2s forwards;
+      z-index: 10000;
+    }
+
+    @keyframes toastShow { to { opacity: 1; } }
+    @keyframes toastHide { to { opacity: 0; } }
+  </style>
+</head>
+
+<body>
+
+  <h1>Sergei Bogdanov</h1>
+
+  <section class="services">
+    <h2>Palvelut</h2>
+    <div class="packages">
+
+      <div class="package">
+        <h3>Kevyt</h3>
+        <div class="price">200 € / kk</div>
+        <ul>
+          <li>Kevyt verkkosivusto</li>
+          <li>Responsiivinen toteutus</li>
+          <li>Perus SEO</li>
+          <li>Ylläpito</li>
+        </ul>
+        <button onclick="openSupport('Kevyt')">Pyydä tarjous</button>
+      </div>
+
+      <div class="package">
+        <h3>Medium</h3>
+        <div class="price">500 € / kk</div>
+        <ul>
+          <li>CMS-hallinta</li>
+          <li>SEO & analytiikka</li>
+          <li>Varmuuskopiot</li>
+          <li>Tuki arkipäivisin</li>
+        </ul>
+        <button onclick="openSupport('Medium')">Pyydä tarjous</button>
+      </div>
+
+      <div class="package">
+        <h3>Max</h3>
+        <div class="price">1500 € / kk</div>
+        <ul>
+          <li>Verkkokauppa</li>
+          <li>Maksujärjestelmät</li>
+          <li>Korkea tietoturva</li>
+          <li><b>24/7 support</b></li>
+        </ul>
+      <button onclick="openSupport('Max')">Pyydä tarjous</button>
+      </div>
+
+      <div class="package">
+        <h3>Räätälöity</h3>
+        <div class="price">Tarjous</div>
+        <ul>
+          <li>Yksilöllinen toteutus</li>
+          <li>API & integraatiot</li>
+          <li>Sovelluskehitys</li>
+        </ul>
+       <button onclick="openSupport('Räätälöity')">Ota yhteyttä</button>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="contact-box" onclick="navigator.clipboard.writeText('sergei.bogdanov@sedu.fi')">
+    📧 sergei.bogdanov@sedu.fi
+  </div>
+
+  <footer>© 2026</footer>
+
+  <div id="supportBtn" onclick="openSupport()">💬 Tuki</div>
+
+  <div id="modalBg" onclick="if(event.target===this)this.style.display='none'">
+    <div id="modal">
+      <h3>Ota yhteyttä</h3>
+      <form id="contactForm">
+  <input type="hidden" name="access_key" value="c5c74848-9838-42e3-a7c8-e58af4c17adc">
+  <input type="hidden" name="package" id="packageField">
+        <input name="name" placeholder="Nimesi" required>
+        <input name="email" type="email" placeholder="Sähköposti" required>
+        <textarea name="message" rows="4" placeholder="Viestisi..." required></textarea>
+        <button type="submit">Lähetä</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+function openSupport(pkg = "") {
+  modalBg.style.display = "flex";
+  document.getElementById("packageField").value = pkg;
+}
+
+    contactForm.onsubmit = async e => {
+  e.preventDefault();
+
+  const res = await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    body: new FormData(contactForm)
+  });
+
+  modalBg.style.display = "none";
+  showToast(res.ok ? "Kiitos! Viesti lähetetty." : "Virhe!");
+  contactForm.reset();
+};
+
+    function showToast(text) {
+      const t = document.createElement("div");
+      t.className = "toast";
+      t.innerText = text;
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 2800);
+    }
+  </script>
+
+</body>
+</html>
